@@ -22,7 +22,7 @@ public class EnemyAttacking : MonoBehaviour
     {
         attackAnimator = GetComponentInChildren<Animator>();
 
-        range = GetComponentInChildren<SphereCollider[]>();
+        range = GetComponent<SphereCollider[]>();
         triggerAttack= GetComponent<CapsuleCollider>(); 
     }
     // Start is called before the first frame update

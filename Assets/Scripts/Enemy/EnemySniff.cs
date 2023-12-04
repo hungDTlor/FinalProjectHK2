@@ -24,10 +24,10 @@ public class EnemySniff : MonoBehaviour
     void Update()
     {
 
-        Vision();
+        Sniff();
     }
 
-    private void Vision()
+    private void Sniff()
     {
         Collider[] viewCheck = Physics.OverlapSphere(zombieTransform.position, radius, playerMask);
 
@@ -35,7 +35,7 @@ public class EnemySniff : MonoBehaviour
         {
             findPlayer = true;
         }
-        else if (findPlayer)
+        else 
         {
             findPlayer = false;
         }
