@@ -12,7 +12,7 @@ public class AIChaseState : AIState
     }
     public void Enter(AIAgent agennt)
     {
-       
+           
     }
     public void Update(AIAgent agent)
     {
