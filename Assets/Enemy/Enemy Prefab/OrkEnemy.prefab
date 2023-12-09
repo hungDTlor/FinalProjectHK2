@@ -2153,7 +2153,7 @@ GameObject:
   - component: {fileID: 2145573510703514927}
   m_Layer: 9
   m_Name: HitPoint
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6323,6 +6323,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 5594437797354397437}
   enemy: {fileID: 7440980699757276684}
+  player: {fileID: 0}
+  turnSpeed: 1.5
   maxHp: 20
 --- !u!1 &7461095819387883392
 GameObject:

@@ -14,17 +14,18 @@ public class ZombieMovement : MonoBehaviour
 
     [SerializeField] private Transform player;
 
-    public Transform target;
+    [HideInInspector]public Transform target;
 
     [SerializeField] LayerMask playerMask;
 
-    private Animator zombieAnimator;
+    [SerializeField] Animator zombieAnimator;
 
     private EnemyVision enemyVision;
     private EnemySniff enemySniff;
-    private EnemyMovementState enemyMovementState;
+    
     private EnemyAttacking enemyAttacking;
 
+    public EnemyMovementState currentState;
 
     private void Awake()
     {
@@ -32,6 +33,10 @@ public class ZombieMovement : MonoBehaviour
         enemyVision=GetComponent<EnemyVision>();
         enemyAttacking=GetComponent<EnemyAttacking>(); 
         zombieAnimator=GetComponent<Animator>();
+        currentState=GetComponent<EnemyMovementState>();
+
+        currentState = EnemyMovementState.Idle;
+        
 
     }
     // Start is called before the first frame update
@@ -45,10 +50,41 @@ public class ZombieMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        switch (currentState)
+        {
+            case EnemyMovementState.Idle: 
+                {
+                    ZombieIdle(); 
+                    break; 
+                }
+            case EnemyMovementState.Patrolling: 
+                { 
+                    break; 
+                }
+
+            case EnemyMovementState.Chasing: 
+                {
+                    if(enemyVision.canSeePlayer==true)
+                    {
+                        ZombieChasing();
+                    }
+                    break; 
+                }
+            case EnemyMovementState.Attacking: 
+                { 
+                    break; 
+                }
+            case EnemyMovementState.Died: 
+                { 
+                    break; 
+                }
+
+        }
+
     }
 
-    public void Movement()
+    public void ZombieMove()
     {
         
         
@@ -56,13 +92,9 @@ public class ZombieMovement : MonoBehaviour
 
     public void ZombieIdle()
     {
-        target = transform;
         
-        zombieAnimator.SetBool("isPatrolling", false);
         
-        agent.speed = 0f;
-
-        zombieAnimator.SetFloat("Speed", 0f);
+        
     }
 
     public void ZombiePatrolling()
@@ -75,6 +107,14 @@ public class ZombieMovement : MonoBehaviour
 
     public void ZombieChasing()
     {
+        Debug.Log("Chasing");
+        /*
+            zombieAnimator.SetBool("isChasing", true);
+            target.position = player.position;
+            zombieAnimator.SetFloat("Speed", runSpeed);
+            agent.speed = runSpeed;
+        */
+        
     }
 
     public void ZombieAttacking()
@@ -85,5 +125,39 @@ public class ZombieMovement : MonoBehaviour
     public void ZombieDeath()
     {
         
+    }
+
+    public void SwitchEnemyState(EnemyMovementState newState)
+    {
+        /*
+          public enum EnemyMovementState
+            {
+                Idle, Patrolling, Chasing, Died, Attacking
+            }
+        */
+
+        switch (currentState)
+        {
+            case EnemyMovementState.Idle: { break; }
+            case EnemyMovementState.Patrolling: { break; }
+
+            case EnemyMovementState.Chasing: { break; }
+            case EnemyMovementState.Attacking: { break; }
+            case EnemyMovementState.Died: { break; }
+
+        }
+
+        switch (newState)
+        {
+            case EnemyMovementState.Idle: { break; }
+            case EnemyMovementState.Patrolling: { break; }
+
+            case EnemyMovementState.Chasing: { break; }
+            case EnemyMovementState.Attacking: { break; }
+            case EnemyMovementState.Died: { break; }
+        }
+
+        currentState = newState;
+
     }
 }

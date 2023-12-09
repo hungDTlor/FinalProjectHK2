@@ -1155,7 +1155,7 @@ GameObject:
   - component: {fileID: 2514953381151814878}
   m_Layer: 9
   m_Name: HitPoint
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3770,13 +3770,14 @@ GameObject:
   - component: {fileID: 5333340925413858042}
   - component: {fileID: 4665746754742416556}
   - component: {fileID: 8525654960165342024}
+  - component: {fileID: 729181796209899278}
   m_Layer: 9
   m_Name: ZombieEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3373305577396555772
 Transform:
   m_ObjectHideFlags: 0
@@ -3880,7 +3881,7 @@ MonoBehaviour:
   numberAttackAnimation: 3
   numOfAttacken: 2
   startView: {fileID: 6101095741746707589}
-  radius: 2
+  radius: 0.8
   viewAngle: 110
   obstructionMask:
     serializedVersion: 2
@@ -3926,7 +3927,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 3918203352449182583}
   enemy: {fileID: 5815717236836626100}
+  player: {fileID: 0}
+  turnSpeed: 1.5
+  targetPlayerHit: {fileID: 0}
   maxHp: 20
+  getHit: 0
+--- !u!114 &729181796209899278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5815717236836626100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b663e3ef6748c164b9f1503aba1d4a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 2
+  runSpeed: 3.7
+  agent: {fileID: 732561765624002058}
+  player: {fileID: 0}
+  target: {fileID: 0}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  zombieAnimator: {fileID: 3918203352449182583}
+  currentState: 0
 --- !u!1 &5817005567326975983
 GameObject:
   m_ObjectHideFlags: 0
