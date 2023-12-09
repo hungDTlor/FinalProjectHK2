@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3ea930d186ac54994e5a0c79fcdabd, type: 3}
   m_Name: New Enemy Scriptable Object
   m_EditorClassIdentifier: 
+  prefab: {fileID: 505877613538482295, guid: d44c1b7953603e645894c6a232e7f94b, type: 3}
   health: 100
   AIUpdateInterval: 1
   acceleration: 8

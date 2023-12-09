@@ -4,28 +4,38 @@ using UnityEngine;
 
 public class ObjectPool 
 {
+    private GameObject parent;
     private PoolableObject prefab;
     private List<PoolableObject> availableObjects;
+    private EnemySpawner spawner;
+    private int size;
+    
     private ObjectPool(PoolableObject prefab, int size)
     {
         this.prefab = prefab;
         availableObjects = new List<PoolableObject>(size);
     }
+    
     public static ObjectPool CreateInstance(PoolableObject prefab , int size)
     {
         ObjectPool pool = new ObjectPool(prefab, size);
-        GameObject poolObject = new GameObject(prefab.name + " pool");
-        pool.CreateObjects(poolObject.transform, size);
+        pool.parent = new GameObject(prefab.name + " pool");
+        pool.CreateObjects();
         return pool;
     }
-    public void CreateObjects(Transform parent ,int size)
+
+    public void CreateObjects()
     {
         for( int i = 0; i < size; i++ )
         {
-            PoolableObject poolableObject = GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity, parent.transform);
-            poolableObject.Parent = this;
-            poolableObject.gameObject.SetActive(false);
+            CreateObject();
         }
+    }
+    private void CreateObject()
+    {
+        PoolableObject poolableObject = GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity, parent.transform);
+        poolableObject.Parent = this;
+        poolableObject.gameObject.SetActive(false);
     }
     public void ReturnObjectToPool(PoolableObject poolableObject)
     {
@@ -34,6 +44,10 @@ public class ObjectPool
    
     public PoolableObject GetObject()
     {
+        if( availableObjects.Count == 0 )
+        {
+            CreateObject();
+        }
         if(availableObjects.Count > 0)
         {
             PoolableObject instance = availableObjects[0];

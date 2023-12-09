@@ -45,36 +45,13 @@ public class ZombieMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemySniff.findPlayer== false && enemyVision.canSeePlayer==false)
-        {
-
-            zombieAnimator.SetBool("isPatrolling", false);
-            ZombieIdle();
-            Movement();
-        }
-        else if (enemySniff.findPlayer == true && enemyVision.canSeePlayer == false)
-        {
-            zombieAnimator.SetBool("isPatrolling", true);
-            ZombiePatrolling();
-            Movement();
-        }
+        
     }
 
     public void Movement()
     {
-        if (Vector3.Distance(target.position, transform.position) > 1f)
-        {
-            agent.SetDestination(target.position);
-            zombieAnimator.SetFloat("Speed", 0.2f);
-        }
-
-        else
-        {
-            agent.SetDestination(transform.position);
-            zombieAnimator.SetFloat("Speed", 0f);
-
-
-        }
+        
+        
     }
 
     public void ZombieIdle()
@@ -98,12 +75,11 @@ public class ZombieMovement : MonoBehaviour
 
     public void ZombieChasing()
     {
-        target.position = player.position;
     }
 
     public void ZombieAttacking()
     {
-        target.position = player.position;
+        
     }
 
     public void ZombieDeath()

@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(EnemyVision))]
+
+
 public class DrawVision : Editor
 {
     
@@ -13,6 +15,9 @@ public class DrawVision : Editor
         EnemyVision enemyVision = (EnemyVision)target;
         Handles.color = Color.white;
         Handles.DrawWireArc(enemyVision.startView.position, Vector3.up, Vector3.forward, 360, enemyVision.radius);
+
+        //
+        
 
         Vector3 viewAngle01 = DirectionFromAngle(enemyVision.startView.eulerAngles.y, -enemyVision.viewAngle / 2);
         Vector3 viewAngle02 = DirectionFromAngle(enemyVision.startView.eulerAngles.y, enemyVision.viewAngle / 2);

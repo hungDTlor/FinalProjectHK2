@@ -6,6 +6,7 @@ using UnityEngine.AI;
 [CreateAssetMenu]
 public class EnemyScriptableObject : ScriptableObject
 {
+    public Enemy1 prefab;
     //Enemy stats
     public int health = 100;
 

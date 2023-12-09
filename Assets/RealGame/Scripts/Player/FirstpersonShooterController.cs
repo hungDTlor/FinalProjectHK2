@@ -14,22 +14,23 @@ public class FirstpersonShooterController : MonoBehaviour
     [SerializeField] private GameObject gun;
 
     [SerializeField] private KeyCode reloadKey;
-    
+
+    private float maxHp = 100;
+    private float currentHp;
+
     public static Action shootInput;
     public static Action reloadInput;
     public static Action ADSInput;
     
     void Start()
     {
+        currentHp = maxHp;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            shootInput?.Invoke();
-        }
+        shootInput?.Invoke();
         if (Input.GetKeyDown(reloadKey))
         {
             reloadInput?.Invoke();
@@ -37,5 +38,28 @@ public class FirstpersonShooterController : MonoBehaviour
         ADSInput?.Invoke();
     }
 
-    
+    public void maxHpIncrement(float hp)
+    {
+        maxHp += hp;
+        currentHp = maxHp;
+    }
+
+    public void currentHpDecrement(float hp)
+    {
+        currentHp -= hp;
+    }
+
+    public void currentHpIncrement(float hp)
+    {
+        if(currentHp + hp > maxHp) currentHp = maxHp;
+        else currentHp += hp;
+    }
+
+    void Die()
+    {
+        if (currentHp <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
